@@ -1,0 +1,23 @@
+https://github.com/szyper
+
+DOCUMENT_ROOT	C:/xampp/htdocs
+upload_max_filesize	40M	40M
+
+http://localhost/phpmyadmin/
+Typ serwera: MariaDB
+mysqld.exe
+
+https://gitforwindows.org/
+git clone https://github.com/szyper/wsb_hIinz_2_K79_Inf.git
+
+git status
+git add *
+git commit
+git config --global user.email "email@gmailcom"
+git config --global user.name "username"
+
+git commit => vim
+i / insert, :wq
+git push / git push origin main
+
+git commit -m "comment"
