@@ -93,12 +93,12 @@ if (isset($_SESSION["logged"]["last_activity"])){
 
     <!-- Main Sidebar Container -->
     <?php
-    require_once "./$role_path/new_reservation/new_reservation_aside.php";
+    require_once "./$role_path/aside.php";
     ?>
 
     <!-- Content Wrapper. Contains page content -->
     <?php
-    require_once "./$role_path/new_reservation/new_reservation_content.php";
+    require_once "./$role_path/restaurants/restaurants.php";
     ?>
     <!-- /.content-wrapper -->
 
