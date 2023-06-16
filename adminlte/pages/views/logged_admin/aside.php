@@ -53,7 +53,7 @@ $currentURL = $_SERVER['REQUEST_URI'];
 					</ul>
 				</li>
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'restaurants.php') !== false || strpos($currentURL, 'new_restaurant.php') !== false) echo 'active'; ?>">
+                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'restaurants.php') !== false || strpos($currentURL, 'new_restaurant.php') !== false || strpos($currentURL, 'new_city.php') !== false) echo 'active'; ?>">
                         <i class="nav-icon fas fa-light fa-utensils"></i>
                         <p>
                             Restauracje
@@ -73,10 +73,16 @@ $currentURL = $_SERVER['REQUEST_URI'];
                                 <p>Dodaj restaurację</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="./new_city.php" class="nav-link <?php if (strpos($currentURL, 'new_city.php') !== false) echo 'active'; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dodaj miasto</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'reservations.php') !== false || strpos($currentURL, 'new_reservation_admin.php') !== false) echo 'active'; ?>">
+                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'reservations.php') !== false || strpos($currentURL, 'new_reservation_admin.php') !== false || strpos($currentURL, 'show_tables_admin.php') !== false) echo 'active'; ?>">
                         <i class="nav-icon fas fa-light fa-calendar"></i>
                         <p>
                             Rezerwacje
