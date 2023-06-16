@@ -32,7 +32,6 @@
                         <tr>
                             <th>Nazwa</th>
                             <th>Adres</th>
-                            <th>Miasto</th>
                             <th>Numer telefonu</th>
                             <th></th>
                         </tr>
@@ -47,8 +46,7 @@
                             echo <<< USERS
                 <tr>
                   <td>$restaurant[name]</td>
-                  <td>$restaurant[address]</td>
-                  <td>$restaurant[city]</td>
+                  <td>$restaurant[city], $restaurant[address]</td>
                   <td>$restaurant[phoneNumber]</td>
                   <td><a href="../../scripts/delete_restaurant.php?restaurantIdDelete=$restaurant[restaurant_id]">Usuń</a> / 
                   <a href="./edit_restaurant.php?restaurantIdUpdate=$restaurant[restaurant_id]">Edytuj</a></td>
@@ -61,7 +59,6 @@ USERS;
                         <tr>
                             <th>Nazwa</th>
                             <th>Adres</th>
-                            <th>Miasto</th>
                             <th>Numer telefonu</th>
                             <th></th>
                         </tr>

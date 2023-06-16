@@ -35,7 +35,17 @@ if (isset($_SESSION["logged"]["last_activity"])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kukła | Rezerwacja stolików</title>
+  <title><?php switch($_SESSION["logged"]["role_id"]){
+          case 1:
+              echo "Kukła | Rezerwacja stolików";
+              break;
+          case 2:
+              echo "Kukła | Pracownik |";
+              break;
+          case 3:
+              echo "Kukła | Admin | Użytkownicy";
+              break;
+      } ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
