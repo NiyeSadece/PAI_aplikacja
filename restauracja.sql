@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 15, 2023 at 09:34 PM
+-- Generation Time: Cze 16, 2023 at 10:35 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -92,7 +92,10 @@ INSERT INTO `logs` (`id`, `user_id`, `status`, `address_ip`, `created_at`) VALUE
 (42, 13, 1, '::1', '2023-06-11 18:08:27'),
 (43, 13, 1, '::1', '2023-06-11 18:09:02'),
 (44, 15, 1, '::1', '2023-06-11 18:09:45'),
-(46, 15, 1, '::1', '2023-06-15 09:50:40');
+(46, 15, 1, '::1', '2023-06-15 09:50:40'),
+(47, 13, 1, '::1', '2023-06-16 14:01:41'),
+(48, 15, 0, '::1', '2023-06-16 14:07:38'),
+(49, 15, 1, '::1', '2023-06-16 14:07:42');
 
 -- --------------------------------------------------------
 
@@ -110,6 +113,15 @@ CREATE TABLE `reservations` (
   `endTime` time NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`reservation_id`, `restaurant_id`, `user_id`, `table_id`, `reservation_date`, `startTime`, `endTime`, `created_at`) VALUES
+(1, 7, 13, 17, '3223-02-21', '12:00:00', '16:00:00', '2023-06-16 14:02:09'),
+(2, 10, 13, 14, '0000-00-00', '16:00:00', '18:00:00', '2023-06-16 14:05:54'),
+(3, 7, 13, 17, '1233-03-12', '12:00:00', '16:00:00', '2023-06-16 21:05:34');
 
 -- --------------------------------------------------------
 
@@ -297,7 +309,13 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `reservations`
+--
+ALTER TABLE `reservations`
+  MODIFY `reservation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `restaurants`
