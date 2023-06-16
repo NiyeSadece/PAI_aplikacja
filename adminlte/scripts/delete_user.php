@@ -10,7 +10,7 @@ require_once "connect.php";
 $sql = "DELETE FROM users WHERE `users`.`id` = $_GET[userIdDelete]";
 $conn->query($sql);
 if ($conn->affected_rows == 0){
-    header("location: ../pages/views/logged_admin/content.php?userDel=0");
+    header("location: ../pages/views/logged.php?userDel=0");
 }else{
-    header("location: ../pages/views/logged_admin/content.php?userDel=$_GET[userIdDelete]");
+    header("location: ../pages/views/logged.php?userDel=$_GET[userIdDelete]");
 }
