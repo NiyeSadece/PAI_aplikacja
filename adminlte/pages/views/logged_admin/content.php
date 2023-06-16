@@ -47,7 +47,6 @@
             $stmt->execute();
               $result = $stmt->get_result();
               while($user = $result->fetch_assoc()){
-                  $lastLog = !empty($user['lastLog']) ? $user['lastLog'] : 'Brak danych';
 	              echo <<< USERS
                 <tr>
                   <td>$user[firstName]</td>

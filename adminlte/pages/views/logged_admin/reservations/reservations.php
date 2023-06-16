@@ -50,7 +50,7 @@
                             echo <<< USERS
                 <tr>
                   <td>$reservation[name]</td>
-                  <td>$reservation[tableNumber] — $reservation[seats] osób</td>
+                  <td>Nr $reservation[tableNumber] dla $reservation[seats] osób</td>
                   <td>$reservation[firstName] $reservation[lastName] — $reservation[email]</td>
                   <td>$reservation[reservation_date]</td>
                   <td>$reservation[startTime]</td>
