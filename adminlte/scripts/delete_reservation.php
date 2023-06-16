@@ -12,5 +12,5 @@ $conn->query($sql);
 if ($conn->affected_rows == 0){
     header("location: ../pages/views/logged_admin/reservations/reservations.php?userDel=0");
 }else{
-    header("location: ../pages/views/logged_admin/reservations/reservations.php?userDel=$_GET[userIdDelete]");
+    header("location: ../pages/views/logged_admin/reservations/reservations.php?userDel=$_GET[reservationIdDelete]");
 }
