@@ -5,7 +5,7 @@ require_once "./connect.php";
 // Sprawdź, czy użytkownik jest zalogowany
 if (!isset($_SESSION["logged"])) {
     // Jeśli użytkownik nie jest zalogowany, przekieruj go na stronę logowania lub wyświetl odpowiedni komunikat
-    header("Location: login.php");
+//    header("Location: login.php");
     exit();
 }
 
@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $reservationId = $_POST["edit_reservation"];
 
+
     $userId = $_SESSION["logged"]["user_id"];
 
     // Pobierz informacje o rezerwacji na podstawie przekazanego reservationId i userId
@@ -32,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $reservation = $result->fetch_assoc();
-    $_SESSION["edit_reservationId"] = $reservationId;
+    $_SESSION["edit_reservation"] = $reservationId;
+    $_SESSION["address"] = $address;
     echo "test";
     // Aktualizuj rekord rezerwacji w bazie danych na podstawie przekazanego reservationId
 

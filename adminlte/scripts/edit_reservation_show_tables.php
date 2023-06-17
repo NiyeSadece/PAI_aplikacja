@@ -76,7 +76,7 @@ try {
         $_SESSION["logged"]["endTime"] = $endTime;
 
 
-        header("Location: ../pages/views/show_tables.php");
+        header("Location: ../pages/views/edit_reservation_show_tables.php");
         exit();
     } else {
         echo "Brak dostępnych stolików.";

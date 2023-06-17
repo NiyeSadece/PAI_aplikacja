@@ -48,7 +48,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="../../scripts/current_reservations.php" class="nav-link active">
+							<a href="../../scripts/current_reservations.php" class="nav-link">
 
 								<p>Bieżące rezerwacje</p>
 							</a>
