@@ -53,7 +53,7 @@ $currentURL = $_SERVER['REQUEST_URI'];
 					</ul>
 				</li>
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'restaurants.php') !== false || strpos($currentURL, 'new_restaurant.php') !== false || strpos($currentURL, 'new_city.php') !== false || strpos($currentURL, 'cities.php') !== false) echo 'active'; ?>">
+                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'restaurants.php') !== false || strpos($currentURL, 'new_restaurant.php') !== false || strpos($currentURL, 'tables.php') !== false || strpos($currentURL, 'new_city.php') !== false || strpos($currentURL, 'cities.php') !== false) echo 'active'; ?>">
                         <i class="nav-icon fas fa-light fa-utensils"></i>
                         <p>
                             Restauracje

@@ -32,7 +32,7 @@ if (isset($_SESSION["logged"]["last_activity"])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kukła | Admin | Dodawanie nowej restauracji</title>
+    <title>Kukła | Admin | Dodawanie nowych stolików</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -57,9 +57,6 @@ if (isset($_SESSION["logged"]["last_activity"])){
     <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-
-    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/bootstrap.min.css">
-    <link rel="stylesheet" href="ścieżka/do/bootstrap-timepicker.min.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -98,7 +95,7 @@ if (isset($_SESSION["logged"]["last_activity"])){
 
     <!-- Content Wrapper. Contains page content -->
     <?php
-    require_once "./$role_path/restaurants/new_restaurant.php";
+    require_once "./$role_path/restaurants/tables.php";
     ?>
     <!-- /.content-wrapper -->
 
@@ -135,8 +132,6 @@ if (isset($_SESSION["logged"]["last_activity"])){
 <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
-<!--Bootstrap Timepicker-->
-<script src="../../bower_components/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
