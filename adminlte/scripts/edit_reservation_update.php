@@ -22,17 +22,18 @@ require_once "./connect.php";
 try {
 
     $reservationId = $_SESSION["edit_reservation"];
-
-    $stmt = $conn->prepare("UPDATE `reservations` SET `restaurant_id` = ?, `user_id` = ?, `table_id` = ?, `reservation_date` = ?, `startTime` = ?, `endTime` = ? WHERE `reservation_id` = ?");
+    $status = 1;
+    $stmt = $conn->prepare("UPDATE `reservations` SET `restaurant_id` = ?, `user_id` = ?, `table_id` = ?, `reservation_date` = ?, `startTime` = ?, `endTime` = ?, `status_id` = ? WHERE `reservation_id` = ?");
 
     $stmt->bind_param(
-        "iiisssi",
+        "iiisssii",
         $_SESSION["logged"]["restaurantId"],
         $_SESSION["logged"]["user_id"],
         $_SESSION["logged"]["table_id"],
         $_SESSION["logged"]["reservationDate"],
         $_SESSION["logged"]["startTime"],
         $_SESSION["logged"]["endTime"],
+        $status,
         $reservationId
     );
 

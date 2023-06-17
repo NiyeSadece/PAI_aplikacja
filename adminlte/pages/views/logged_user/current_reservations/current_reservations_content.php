@@ -66,6 +66,7 @@ ERROR;
                                 $reservationDate = $reservation["reservationDate"];
                                 $startTime = $reservation["startTime"];
                                 $endTime = $reservation["endTime"];
+                                $status = $reservation["status"];
 
                                 echo <<< RESERVATION
                                     <div>
@@ -76,6 +77,7 @@ ERROR;
                                         <p>Data: $reservationDate</p>
                                         <p>Godzina rozpoczęcia: $startTime</p>
                                         <p>Godzina zakończenia: $endTime</p>
+                                        <p>Status: $status</p>
                                         
                                         <div class="d-flex">
                                         <form action="../../scripts/edit_reservation.php" method="post">
@@ -87,6 +89,7 @@ ERROR;
                                          <input type="hidden" name="reservationDate" value="$reservationDate">
                                          <input type="hidden" name="startTime" value="$startTime">
                                          <input type="hidden" name="endTime" value="$endTime">
+                                         <input type="hidden" name="status" value="$status">
                                          
                                          <button type="submit" class="btn btn-primary mr-2">Edytuj</button>
                                         </form>

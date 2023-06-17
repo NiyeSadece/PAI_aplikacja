@@ -14,11 +14,12 @@ $resultCheckUser = $conn->query($sqlCheckUser);
 if ($resultCheckUser->num_rows > 0) {
     // Użytkownik istnieje w tabeli "reservations"
 
-    $sql = "SELECT res.reservation_id, res.reservation_date, res.startTime, res.endTime, r.name AS restaurantName, a.address, t.tableNumber, t.seats
+    $sql = "SELECT res.reservation_id, res.reservation_date, res.startTime, res.endTime, s.status, r.name AS restaurantName, a.address, t.tableNumber, t.seats
         FROM reservations res
         INNER JOIN restaurants r ON res.restaurant_id = r.restaurant_id
         INNER JOIN address a ON r.address_id = a.id
         INNER JOIN tables t ON res.table_id = t.table_id
+        INNER JOIN status s ON res.status_id = s.id
         WHERE res.user_id = $userId";
     $result = $conn->query($sql);
 
@@ -36,6 +37,7 @@ if ($resultCheckUser->num_rows > 0) {
             $address = $row["address"];
             $tableNumber = $row["tableNumber"];
             $seats = $row["seats"];
+            $status = $row["status"];
 
             $reservation = [
                 "reservationId" => $reservationId,
@@ -45,7 +47,8 @@ if ($resultCheckUser->num_rows > 0) {
                 "seats" => $seats,
                 "reservationDate" => $reservationDate,
                 "startTime" => $startTime,
-                "endTime" => $endTime
+                "endTime" => $endTime,
+                "status" => $status
             ];
 
             $reservations[] = $reservation;

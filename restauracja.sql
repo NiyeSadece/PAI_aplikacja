@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 16, 2023 at 10:35 PM
+-- Generation Time: Cze 17, 2023 at 10:52 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -43,7 +43,9 @@ INSERT INTO `address` (`id`, `city_id`, `address`) VALUES
 (3, 3, 'Marszałka Ferdynanda Focha 14'),
 (4, 4, 'Marszałkowska 140'),
 (5, 5, 'Rynek Staromiejski 16'),
-(6, 1, 'Mickiewicza 24');
+(6, 1, 'Mickiewicza 24'),
+(20, 7, 'Kościuszki 34'),
+(23, 4, 'Krakowska 34');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,8 @@ INSERT INTO `city` (`id`, `city`) VALUES
 (2, 'Gdańsk'),
 (3, 'Bydgoszcz'),
 (4, 'Warszawa'),
-(5, 'Toruń');
+(5, 'Toruń'),
+(7, 'Kraków');
 
 -- --------------------------------------------------------
 
@@ -95,7 +98,11 @@ INSERT INTO `logs` (`id`, `user_id`, `status`, `address_ip`, `created_at`) VALUE
 (46, 15, 1, '::1', '2023-06-15 09:50:40'),
 (47, 13, 1, '::1', '2023-06-16 14:01:41'),
 (48, 15, 0, '::1', '2023-06-16 14:07:38'),
-(49, 15, 1, '::1', '2023-06-16 14:07:42');
+(49, 15, 1, '::1', '2023-06-16 14:07:42'),
+(50, 15, 1, '::1', '2023-06-17 19:36:15'),
+(51, 15, 1, '::1', '2023-06-17 19:54:27'),
+(52, 13, 1, '::1', '2023-06-17 20:27:46'),
+(53, 15, 1, '::1', '2023-06-17 22:48:47');
 
 -- --------------------------------------------------------
 
@@ -111,17 +118,17 @@ CREATE TABLE `reservations` (
   `reservation_date` date NOT NULL,
   `startTime` time NOT NULL,
   `endTime` time NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `status_id` int(10) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`reservation_id`, `restaurant_id`, `user_id`, `table_id`, `reservation_date`, `startTime`, `endTime`, `created_at`) VALUES
-(1, 7, 13, 17, '3223-02-21', '12:00:00', '16:00:00', '2023-06-16 14:02:09'),
-(2, 10, 13, 14, '0000-00-00', '16:00:00', '18:00:00', '2023-06-16 14:05:54'),
-(3, 7, 13, 17, '1233-03-12', '12:00:00', '16:00:00', '2023-06-16 21:05:34');
+INSERT INTO `reservations` (`reservation_id`, `restaurant_id`, `user_id`, `table_id`, `reservation_date`, `startTime`, `endTime`, `created_at`, `status_id`) VALUES
+(2, 8, 13, 18, '2024-11-02', '11:00:00', '16:00:00', '2023-06-16 14:05:54', 1),
+(3, 7, 13, 17, '1233-03-12', '12:00:00', '16:00:00', '2023-06-16 21:05:34', 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +153,9 @@ INSERT INTO `restaurants` (`restaurant_id`, `name`, `phoneNumber`, `address_id`)
 (9, 'Kukła Bydgoszcz', '657489203', 3),
 (10, 'Kukła Warszawa', '345987567', 4),
 (11, 'Kukła Toruń', '3789547536', 5),
-(12, 'Kukła Poznań 2', '546378293', 6);
+(12, 'Kukła Poznań 2', '546378293', 6),
+(13, 'Kukła Kraków', '45632343', 20),
+(16, 'Kukła Warszawa 2', '34689843', 23);
 
 -- --------------------------------------------------------
 
@@ -171,13 +180,34 @@ INSERT INTO `roles` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(10) NOT NULL,
+  `status` enum('niepotwierdzona','potwierdzona','anulowana','zrealizowana') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id`, `status`) VALUES
+(1, 'niepotwierdzona'),
+(2, 'potwierdzona'),
+(3, 'anulowana'),
+(4, 'zrealizowana');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `tables`
 --
 
 CREATE TABLE `tables` (
   `table_id` int(10) NOT NULL,
   `restaurant_id` int(10) NOT NULL,
-  `tableNumber` varchar(50) NOT NULL,
+  `tableNumber` int(50) NOT NULL,
   `seats` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -186,21 +216,26 @@ CREATE TABLE `tables` (
 --
 
 INSERT INTO `tables` (`table_id`, `restaurant_id`, `tableNumber`, `seats`) VALUES
-(5, 7, '1', 6),
-(6, 8, '1', 5),
-(7, 9, '1', 6),
-(8, 10, '1', 4),
-(9, 11, '1', 6),
-(10, 12, '1', 4),
-(11, 7, '2', 6),
-(12, 8, '2', 8),
-(13, 9, '2', 8),
-(14, 10, '2', 2),
-(15, 11, '2', 4),
-(16, 12, '2', 4),
-(17, 7, '3', 4),
-(18, 8, '3', 6),
-(19, 9, '3', 4);
+(5, 7, 1, 6),
+(6, 8, 1, 5),
+(7, 9, 1, 6),
+(8, 10, 1, 4),
+(9, 11, 1, 6),
+(10, 12, 1, 4),
+(11, 7, 2, 6),
+(12, 8, 2, 8),
+(13, 9, 2, 8),
+(14, 10, 2, 2),
+(15, 11, 2, 4),
+(16, 12, 2, 4),
+(17, 7, 3, 4),
+(18, 8, 3, 6),
+(19, 9, 3, 4),
+(20, 13, 3, 6),
+(24, 16, 1, 6),
+(25, 16, 2, 4),
+(26, 16, 3, 2),
+(27, 16, 4, 10);
 
 -- --------------------------------------------------------
 
@@ -259,19 +294,27 @@ ALTER TABLE `reservations`
   ADD PRIMARY KEY (`reservation_id`),
   ADD KEY `restauracja` (`restaurant_id`),
   ADD KEY `stolik` (`table_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `status_id` (`status_id`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `restaurants`
 --
 ALTER TABLE `restaurants`
   ADD PRIMARY KEY (`restaurant_id`),
+  ADD UNIQUE KEY `name` (`name`),
   ADD KEY `address` (`address_id`);
 
 --
 -- Indeksy dla tabeli `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `status`
+--
+ALTER TABLE `status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -297,31 +340,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `reservation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `reservation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `restaurants`
 --
 ALTER TABLE `restaurants`
-  MODIFY `restaurant_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `restaurant_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -330,10 +373,16 @@ ALTER TABLE `roles`
   MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `table_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `table_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -362,6 +411,7 @@ ALTER TABLE `logs`
 --
 ALTER TABLE `reservations`
   ADD CONSTRAINT `restauracja` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `status_id` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `stolik` FOREIGN KEY (`table_id`) REFERENCES `tables` (`table_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
