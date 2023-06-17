@@ -76,11 +76,27 @@ ERROR;
                                         <p>Data: $reservationDate</p>
                                         <p>Godzina rozpoczęcia: $startTime</p>
                                         <p>Godzina zakończenia: $endTime</p>
+                                        
+                                        <div class="d-flex">
                                         <form action="../../scripts/edit_reservation.php" method="post">
                                          <input type="hidden" name="edit_reservation" value="$reservationId">
-                                         <button type="submit" class="btn btn-primary">Edytuj</button>
+                                         <input type="hidden" name="restaurant Name" value="$restaurantName">
+                                         <input type="hidden" name="address" value="$address">
+                                         <input type="hidden" name="tableNumber" value="$tableNumber">
+                                         <input type="hidden" name="seats" value="$seats">
+                                         <input type="hidden" name="reservationDate" value="$reservationDate">
+                                         <input type="hidden" name="startTime" value="$startTime">
+                                         <input type="hidden" name="endTime" value="$endTime">
+                                         
+                                         <button type="submit" class="btn btn-primary mr-2">Edytuj</button>
                                         </form>
                                         
+                                        <form action="../../scripts/delete_reservation_user.php" method="post" onsubmit="return confirm('Czy na pewno chcesz usunąć tę rezerwację?');">
+                                            <input type="hidden" name="delete_reservationId" value="$reservationId">
+                                            <button type="submit" class="btn btn-primary">Usuń</button>
+                                        </form>
+                                        </div> 
+                                        <!-- d-flex-->
 
                                     </div>
                                     <hr>
