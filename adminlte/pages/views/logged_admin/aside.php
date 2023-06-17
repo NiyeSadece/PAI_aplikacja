@@ -53,7 +53,7 @@ $currentURL = $_SERVER['REQUEST_URI'];
 					</ul>
 				</li>
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'restaurants.php') !== false || strpos($currentURL, 'new_restaurant.php') !== false || strpos($currentURL, 'new_city.php') !== false) echo 'active'; ?>">
+                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'restaurants.php') !== false || strpos($currentURL, 'new_restaurant.php') !== false || strpos($currentURL, 'new_city.php') !== false || strpos($currentURL, 'cities.php') !== false) echo 'active'; ?>">
                         <i class="nav-icon fas fa-light fa-utensils"></i>
                         <p>
                             Restauracje
@@ -71,6 +71,12 @@ $currentURL = $_SERVER['REQUEST_URI'];
                             <a href="./new_restaurant.php" class="nav-link <?php if (strpos($currentURL, 'new_restaurant.php') !== false) echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dodaj restaurację</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./cities.php" class="nav-link <?php if (strpos($currentURL, 'cities.php') !== false) echo 'active'; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Zakukłaczone miasta</p>
                             </a>
                         </li>
                         <li class="nav-item">
