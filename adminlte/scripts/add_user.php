@@ -21,10 +21,10 @@ if ($_POST["email1"] != $_POST["email2"]){
     $_SESSION["error"] = "Adresy poczty elektronicznej są różne!";
 }
 
-//if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s])\S{2,}$/', $_POST["pass1"])){
-//	$error = 1;
-//	$_SESSION["error"] = "Hasło nie spełnia wymagań co do złożoności!";
-//}
+if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s])\S{2,}$/', $_POST["pass1"])){
+	$error = 1;
+	$_SESSION["error"] = "Hasło nie spełnia wymagań co do złożoności!";
+}
 
 if ($error != 0){
     echo "<script>history.back();</script>";

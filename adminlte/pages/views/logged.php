@@ -40,7 +40,7 @@ if (isset($_SESSION["logged"]["last_activity"])) {
               echo "Kukła | Rezerwacja stolików";
               break;
           case 2:
-              echo "Kukła | Pracownik |";
+              echo "Kukła | Pracownik | Rezerwacje";
               break;
           case 3:
               echo "Kukła | Admin | Użytkownicy";
