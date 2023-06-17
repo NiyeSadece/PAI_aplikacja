@@ -138,7 +138,7 @@
                                     <div class="col-lg-10">
                                     </div>
                                     <div class="col-2">
-                                        <input type="submit" value="DODAJ" class="btn btn-outline-primary btn-block ">
+                                        <input type="submit" value="WYBÓR STOLIKA" class="btn btn-outline-primary btn-block ">
                                     </div>
                                 </div>
                             </div>
