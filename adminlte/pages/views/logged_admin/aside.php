@@ -88,7 +88,7 @@ $currentURL = $_SERVER['REQUEST_URI'];
                     </ul>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'reservations.php') !== false || strpos($currentURL, 'new_reservation_admin.php') !== false || strpos($currentURL, 'show_tables_admin.php') !== false) echo 'active'; ?>">
+                    <a href="#" class="nav-link <?php if (strpos($currentURL, 'reservations.php') !== false || strpos($currentURL, 'new_reservation_admin.php') !== false || strpos($currentURL, 'show_tables_admin.php') !== false || strpos($currentURL, 'edit_reservation_admin.php') !== false || strpos($currentURL, 'edit_reservation_tables.php') !== false) echo 'active'; ?>">
                         <i class="nav-icon fas fa-light fa-calendar"></i>
                         <p>
                             Rezerwacje

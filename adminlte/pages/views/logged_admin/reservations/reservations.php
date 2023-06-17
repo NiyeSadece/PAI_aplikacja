@@ -59,7 +59,7 @@
                   <td>$reservation[created_at]</td>
                   <td>$reservation[status]</td>
                   <td><a href="../../scripts/delete_reservation.php?reservationIdDelete=$reservation[reservation_id]">Usuń</a> / 
-                  <a href="./edit_reservation.php?reservationIdUpdate=$reservation[reservation_id]">Edytuj</a></td>
+                  <a href="./edit_reservation_admin.php?reservationIdUpdate=$reservation[reservation_id]">Edytuj</a></td>
                 </tr>
 USERS;
                         }
